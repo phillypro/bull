@@ -148,12 +148,9 @@ function saveChanges() {
   function downloadSVGAsPNG2(e){
   var node = document.querySelector('.resizeme');
 
-  domtoimage.toJpeg(node, { quality: 1 })
-  .then(function (dataUrl) {
-      var link = document.createElement('a');
-      link.download = 'webull.jpeg';
-      link.href = dataUrl;
-      link.click();
+  domtoimage.toBlob(node)
+  .then(function (blob) {
+    window.saveAs(blob, 'my-node.png');
   });
   }
 
