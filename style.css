@@ -15,11 +15,6 @@ margin: 0 auto;
 
 }
 .resizeme {
-    max-width:500px;
-    resize: horizontal;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
 }
 .resizeme img {
     max-width:100%;
