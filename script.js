@@ -147,13 +147,15 @@ function saveChanges() {
 
   function downloadSVGAsPNG2(e){
   var node = document.querySelector('.resizeme');
-  var scale = 3;
+  var scale = 2.2;
   domtoimage.toBlob(node, {
     width: node.clientWidth * scale,
     height: node.clientHeight * scale,
     style: {
      transform: 'scale('+scale+')',
-     transformOrigin: 'top left'
+     transformOrigin: 'top left',
+     width: `${node.clientWidth * scale}px`,
+     height: `${node.clientHeight * scale}px`
    }})
   .then(function (blob) {
     window.saveAs(blob, 'bull.png');
