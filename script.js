@@ -1,3 +1,16 @@
+var form = localStorage.getItem("form");
+
+if(form) {
+var formObj = JSON.parse(form);
+  const keys = Object.keys(formObj );
+  keys.forEach((key, index) => {
+    document.querySelector('#' + key ).value = formObj[key];  
+});
+}
+
+
+
+
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -54,10 +67,10 @@ iniInp.addEventListener('keyup', updateTotals );
 iniInp.addEventListener('change', updateTotals );
 currInp.addEventListener('keyup', updateTotals );
 currInp.addEventListener('change', updateTotals );
-tckrInp.addEventListener('keyup', function(e) { document.querySelector('#ticker').innerHTML = e.currentTarget.value; });
-posInp.addEventListener('keyup', function(e) { document.querySelector('#positionRatio #percent2').innerHTML = e.currentTarget.value; });
-posInp.addEventListener('change', function(e) { document.querySelector('#positionRatio #percent2').innerHTML = e.currentTarget.value; });
-stkeInp.addEventListener('keyup', function(e) { document.querySelector('#strike #number').innerHTML = e.currentTarget.value; });
+tckrInp.addEventListener('keyup', function(e) { document.querySelector('#ticker').innerHTML = e.currentTarget.value; saveChanges() });
+posInp.addEventListener('keyup', function(e) { document.querySelector('#positionRatio #percent2').innerHTML = e.currentTarget.value; saveChanges() });
+posInp.addEventListener('change', function(e) { document.querySelector('#positionRatio #percent2').innerHTML = e.currentTarget.value; saveChanges() });
+stkeInp.addEventListener('keyup', function(e) { document.querySelector('#strike #number').innerHTML = e.currentTarget.value; saveChanges() });
 dteInp.addEventListener('change', function(e) { let b = e.currentTarget.value.split(/\D/), thedate = new Date(b[0], --b[1], b[2]), formatdate = thedate.toString("dd MMM yy"); document.querySelector('#date').innerHTML = formatdate;
 let diff = Math.round((thedate-new Date())/(1000*60*60*24));
 if(diff <= 5) {
@@ -65,8 +78,9 @@ if(diff <= 5) {
 }else{
     document.querySelector('#clock').classList.remove('weekly');
 }
+saveChanges()
 });
-optInp.addEventListener('change', function(e) { document.querySelector('#option').innerHTML = e.currentTarget.value; });
+optInp.addEventListener('change', function(e) { document.querySelector('#option').innerHTML = e.currentTarget.value; saveChanges() });
 
 
 /* set defaults */
@@ -112,8 +126,21 @@ profitLoss.innerHTML =  formatMoney( ((currInp.value - iniInp.value) * 100) * qt
 profitLossPercent.innerHTML =   ((currInp.value-iniInp.value)/iniInp.value * 100).toFixed(2);
 daysProfitLossPercent.innerHTML = formatMoney(Number(profitLoss.innerHTML.replace(/[^0-9.-]+/g,"")) - (qtyInp.value * 0.169).toFixed(2)).replace('$','');
 avgPrice.innerHTML = iniInp.value;
+saveChanges();
 }
 
+
+function saveChanges() {
+  let formInputs = document.querySelectorAll('form input, form select');
+  var data = {};
+  [].forEach.call(formInputs, function(input) {
+    // do whatever
+    if(input.type !== 'file') {
+    data[input.id] =  input.value;
+    }
+  });
+  localStorage.setItem('form', JSON.stringify(data));
+}
 
 
 
@@ -124,7 +151,7 @@ avgPrice.innerHTML = iniInp.value;
   domtoimage.toJpeg(node, { quality: 1 })
   .then(function (dataUrl) {
       var link = document.createElement('a');
-      link.download = 'my-image-name.jpeg';
+      link.download = 'webull.jpeg';
       link.href = dataUrl;
       link.click();
   });
