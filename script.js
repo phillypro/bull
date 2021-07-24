@@ -93,6 +93,7 @@ posInp.dispatchEvent(evt);
 
 /* set date default */
 // Variables
+if(form === null) {
 var date = new Date();
 	// Remove attributes
 	dteInp.removeAttribute('pattern');
@@ -101,6 +102,7 @@ var nextFriday = nextFriday();
 // Set the value
 dteInp.value = nextFriday.getFullYear().toString() + '-' + (nextFriday.getMonth() + 1).toString().padStart(2, 0) +
     '-' + nextFriday.getDate().toString().padStart(2, 0);
+}
     var evt = document.createEvent("HTMLEvents");
     evt.initEvent("change", false, true);
     dteInp.dispatchEvent(evt);
@@ -108,7 +110,6 @@ dteInp.value = nextFriday.getFullYear().toString() + '-' + (nextFriday.getMonth(
 
 
 function updateTotals(e) {
-console.log(e.currentTarget.name);
 
 let qtyInp = document.querySelector('#qty'),
 quantity = document.querySelector('#quantity'),
