@@ -147,10 +147,16 @@ function saveChanges() {
 
   function downloadSVGAsPNG2(e){
   var node = document.querySelector('.resizeme');
-
-  domtoimage.toBlob(node)
+  var scale = 3;
+  domtoimage.toBlob(node, {
+    width: node.clientWidth * scale,
+    height: node.clientHeight * scale,
+    style: {
+     transform: 'scale('+scale+')',
+     transformOrigin: 'top left'
+   }})
   .then(function (blob) {
-    window.saveAs(blob, 'my-node.png');
+    window.saveAs(blob, 'bull.png');
   });
   }
 
