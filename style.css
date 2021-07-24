@@ -38,6 +38,10 @@ margin: 0 auto;
     display: flex;
     }
 }
+#ticker {
+text-transform: uppercase;
+
+}
 #options .column {
 }
 #options .column > * {
