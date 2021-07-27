@@ -1,81 +1,89 @@
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    src: url(https://fonts.gstatic.com/s/opensans/v20/mem5YaGs126MiZpBA-UNirkOX-hpOqc.woff2) format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+  }
+
 .container {
-max-width:500px;
-margin: 0 auto;
-}
-#download {
-    text-align: center;
-    padding: 15px 0;
-}
-#download button {
-    padding: 10px 45px;
-    font-size: 20px;
-    background: #00a1ff;
-    color: #fff;
-    border: none;
-
-}
-.resizeme {
-}
-.resizeme img {
-    max-width:100%;
-   }
- .resizeme svg {
-    max-width: 100%;
-    height: auto;
-    background:#1E243C;
- }  
-#options {
-    margin-top: 20px;
-    justify-content: end;
-}
-@media (min-width:600px) {
-    #options {    
-    display: flex;
+    max-width:500px;
+    margin: 0 auto;
     }
-}
-#ticker {
-text-transform: uppercase;
-
-}
-#options .column {
-}
-#options .column > * {
- display:block;
- margin-bottom:3px;
-}
-#options .column > input, #options .column > select {
-margin-bottom:10px;
-}
-
-.data {
-color:#E9ECF6;
-font-family: 'Open Sans', sans-serif;
-font-size: 20px;
-background-color: #1E243C;
-}
-.data > * {
-display:inline-block;
-}
-.data.green {
-color:#00C8A4;
-}
-.right {
-text-align:right;
-}
-#Toplineobj {
-    background: #1e243c;
-}
-#clock {
+    #download {
+        text-align: center;
+        padding: 15px 0;
+    }
+    #download button {
+        padding: 10px 45px;
+        font-size: 20px;
+        background: #00a1ff;
+        color: #fff;
+        border: none;
+    
+    }
+    .resizeme {
+    }
+    .resizeme img {
+        max-width:100%;
+       }
+     .resizeme svg {
+        max-width: 100%;
+        height: auto;
+        background:#1E243C;
+     }  
+    #options {
+        margin-top: 20px;
+        justify-content: end;
+    }
+    @media (min-width:600px) {
+        #options {    
+        display: flex;
+        }
+    }
+    #ticker {
+    text-transform: uppercase;
+    
+    }
+    #options .column {
+    }
+    #options .column > * {
+     display:block;
+     margin-bottom:3px;
+    }
+    #options .column > input, #options .column > select {
+    margin-bottom:10px;
+    }
+    
+    .data {
+    color:#E9ECF6;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
     background-color: #1E243C;
-    background-size: 100%;
-    background-repeat:no-repeat;
-}
-#clock.weekly {
-    background-image: url(clock.jpg);
-}
-#quantity {
-color:#2177D6;
-}
-#Topline > * {
- display:inline-block;
-}
+    }
+    .data > * {
+    display:inline-block;
+    }
+    .data.green {
+    color:#00C8A4;
+    }
+    .right {
+    text-align:right;
+    }
+    #Toplineobj {
+        background: #1e243c;
+    }
+    #clock {
+        background-color: #1E243C;
+        background-size: 100%;
+        background-repeat:no-repeat;
+    }
+    #clock.weekly {
+        background-image: url(clock.jpg);
+    }
+    #quantity {
+    color:#2177D6;
+    }
+    #Topline > * {
+     display:inline-block;
+    }
