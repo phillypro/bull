@@ -4,7 +4,12 @@ if(form) {
 var formObj = JSON.parse(form);
   const keys = Object.keys(formObj );
   keys.forEach((key, index) => {
+    if(key !== 'imgInp') {
     document.querySelector('#' + key ).value = formObj[key];  
+    }else{
+      document.querySelector('#blah').src = formObj[key];
+    }
+    
 });
 }
 
@@ -17,7 +22,8 @@ function readURL(input) {
         
         reader.onload = function (e) {
             var blah = document.querySelector('#blah');
-            blah.src = e.target.result
+            blah.src = e.target.result;
+            updateTotals();
         }
         
         reader.readAsDataURL(input.files[0]);
@@ -117,15 +123,29 @@ iniInp = document.querySelector('#initialprice'),
 currInp = document.querySelector('#currentprice'),
 avgPrice = document.querySelector('#averagePrice'),
 marketValue = document.querySelector('#marketValue'),
-profitLoss = document.querySelector('#profitLoss #money'),
+profitLossWrap = document.querySelector('#profitLoss'),
+profitLoss = profitLossWrap.querySelector('#money'),
 profitLossPercent = document.querySelector('#profitLoss #percent'),
-daysProfitLossPercent = document.querySelector('#daysProfitLoss #money2');
+daysProfitLossWrap = document.querySelector('#daysProfitLoss'),
+daysProfitLossPercent = daysProfitLossWrap.querySelector('#money2');
 
 quantity.innerHTML = qtyInp.value;
 marketValue.innerHTML = formatMoney( ((qtyInp.value * 100) * iniInp.value) + (((currInp.value - iniInp.value) * 100) * qtyInp.value)  ).replace('$','');
-profitLoss.innerHTML =  formatMoney( ((currInp.value - iniInp.value) * 100) * qtyInp.value ).replace('$','');
-profitLossPercent.innerHTML =   ((currInp.value-iniInp.value)/iniInp.value * 100).toFixed(2);
-daysProfitLossPercent.innerHTML = formatMoney(Number(profitLoss.innerHTML.replace(/[^0-9.-]+/g,"")) - (qtyInp.value * 0.169).toFixed(2)).replace('$','');
+
+if(Number(currInp.value) > Number(iniInp.value)) {
+profitLoss.innerHTML =  '+' + formatMoney( ((currInp.value - iniInp.value) * 100) * qtyInp.value ).replace('$','');
+profitLossPercent.innerHTML = ' +' + ((currInp.value-iniInp.value)/iniInp.value * 100).toFixed(2);
+daysProfitLossPercent.innerHTML = '+' + formatMoney(Number(profitLoss.innerHTML.replace(/[^0-9.-]+/g,"")) - (qtyInp.value * 0.169).toFixed(2)).replace('$','');
+profitLossWrap.classList.remove('red');
+daysProfitLossWrap.classList.remove('red');
+}else{
+  profitLoss.innerHTML = '-' + formatMoney( ((iniInp.value - currInp.value) * 100) * qtyInp.value ).replace('$','');
+  profitLossPercent.innerHTML =  ((currInp.value-iniInp.value)/iniInp.value * 100).toFixed(2);
+  daysProfitLossPercent.innerHTML = formatMoney(Number(profitLoss.innerHTML.replace(/[^0-9.-]+/g,"")) - (qtyInp.value * 0.169).toFixed(2)).replace('$','');
+  profitLossWrap.classList.add('red');
+  daysProfitLossWrap.classList.add('red');
+}
+
 avgPrice.innerHTML = iniInp.value;
 saveChanges();
 }
@@ -138,6 +158,8 @@ function saveChanges() {
     // do whatever
     if(input.type !== 'file') {
     data[input.id] =  input.value;
+    }else{
+      data[input.id] =  document.querySelector('#blah').src;
     }
   });
   localStorage.setItem('form', JSON.stringify(data));
