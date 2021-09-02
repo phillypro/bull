@@ -70,6 +70,9 @@
     .data.green {
     color:#00C8A4;
     }
+    .data.green.red {
+        color:#F03C6C;
+    }
     .right {
     text-align:right;
     }
