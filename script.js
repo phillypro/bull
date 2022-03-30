@@ -56,6 +56,10 @@ function formatMoney(money) {
     return new Intl.NumberFormat('en-US', {   style: 'currency',  currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(money);
 }
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 
 let imgInp = document.querySelector('#imgInp'),
 qtyInp = document.querySelector('#qty'),
@@ -76,7 +80,7 @@ currInp.addEventListener('change', updateTotals );
 tckrInp.addEventListener('keyup', function(e) { document.querySelector('#ticker').innerHTML = e.currentTarget.value; saveChanges() });
 posInp.addEventListener('keyup', function(e) { document.querySelector('#positionRatio #percent2').innerHTML = e.currentTarget.value; saveChanges() });
 posInp.addEventListener('change', function(e) { document.querySelector('#positionRatio #percent2').innerHTML = e.currentTarget.value; saveChanges() });
-stkeInp.addEventListener('keyup', function(e) { document.querySelector('#strike #number').innerHTML = e.currentTarget.value; saveChanges() });
+stkeInp.addEventListener('keyup', function(e) { document.querySelector('#strike #number').innerHTML = numberWithCommas(e.currentTarget.value); saveChanges() });
 dteInp.addEventListener('change', function(e) { let b = e.currentTarget.value.split(/\D/), thedate = new Date(b[0], --b[1], b[2]), formatdate = thedate.toString("dd MMM yy"); document.querySelector('#date').innerHTML = formatdate;
 let diff = Math.round((thedate-new Date())/(1000*60*60*24));
 if(diff <= 5) {
