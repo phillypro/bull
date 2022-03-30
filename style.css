@@ -87,6 +87,14 @@
     #clock.weekly {
         background-image: url(clock.jpg);
     }
+    #arrow {
+        background-image: url(arrow.jpg);
+        background-size: 100%;
+        background-repeat:no-repeat;
+        width: 11px;
+        height: 13px;
+        margin-left: 3px;
+    }
     #quantity {
     color:#2177D6;
     }
