@@ -131,21 +131,24 @@ profitLossWrap = document.querySelector('#profitLoss'),
 profitLoss = profitLossWrap.querySelector('#money'),
 profitLossPercent = document.querySelector('#profitLoss #percent'),
 daysProfitLossWrap = document.querySelector('#daysProfitLoss'),
-daysProfitLossPercent = daysProfitLossWrap.querySelector('#money2');
+daysprofitLossPercent = document.querySelector('#percent3'),
+daysProfitLoss = daysProfitLossWrap.querySelector('#money2');
 
 quantity.innerHTML = qtyInp.value;
 marketValue.innerHTML = formatMoney( ((qtyInp.value * 100) * iniInp.value) + (((currInp.value - iniInp.value) * 100) * qtyInp.value)  ).replace('$','');
 
 if(Number(currInp.value) > Number(iniInp.value)) {
 profitLoss.innerHTML =  '+' + formatMoney( ((currInp.value - iniInp.value) * 100) * qtyInp.value ).replace('$','');
-profitLossPercent.innerHTML = ' +' + ((currInp.value-iniInp.value)/iniInp.value * 100).toFixed(2);
-daysProfitLossPercent.innerHTML = '+' + formatMoney(Number(profitLoss.innerHTML.replace(/[^0-9.-]+/g,"")) - (qtyInp.value * 0.169).toFixed(2)).replace('$','');
+profitLossPercent.innerHTML = ' +' + numberWithCommas(((currInp.value-iniInp.value)/iniInp.value * 100).toFixed(2));
+daysProfitLoss.innerHTML = '+' + formatMoney(Number(profitLoss.innerHTML.replace(/[^0-9.-]+/g,"")) - (qtyInp.value * 0.169).toFixed(2)).replace('$','');
+daysprofitLossPercent.innerHTML = profitLossPercent.innerHTML;
 profitLossWrap.classList.remove('red');
 daysProfitLossWrap.classList.remove('red');
 }else{
   profitLoss.innerHTML = '-' + formatMoney( ((iniInp.value - currInp.value) * 100) * qtyInp.value ).replace('$','');
   profitLossPercent.innerHTML =  ((currInp.value-iniInp.value)/iniInp.value * 100).toFixed(2);
-  daysProfitLossPercent.innerHTML = formatMoney(Number(profitLoss.innerHTML.replace(/[^0-9.-]+/g,"")) - (qtyInp.value * 0.169).toFixed(2)).replace('$','');
+  daysprofitLossPercent.innerHTML = ((currInp.value-iniInp.value)/iniInp.value * 100).toFixed(2);
+  daysProfitLoss.innerHTML = formatMoney(Number(profitLoss.innerHTML.replace(/[^0-9.-]+/g,"")) - (qtyInp.value * 0.169).toFixed(2)).replace('$','');
   profitLossWrap.classList.add('red');
   daysProfitLossWrap.classList.add('red');
 }
