@@ -61,7 +61,7 @@
     .data {
     color:#E9ECF6;
     font-family: 'Open Sans', sans-serif;
-    font-size: 20px;
+    font-size: 18.5px;
     background-color: #1E243C;
     }
     .data > * {
@@ -95,9 +95,15 @@
         height: 13px;
         margin-left: 3px;
     }
+    #option {
+        margin-left: 5px;
+    }
     #quantity {
     color:#2177D6;
     }
     #Topline > * {
      display:inline-block;
+    }
+    #daysProfitLoss, #positionRatio {
+        padding-right:5px;
     }
