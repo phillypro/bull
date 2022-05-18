@@ -70,6 +70,8 @@ dteInp = document.querySelector('#dte'),
 posInp = document.querySelector('#position'),
 iniInp = document.querySelector('#initialprice'),
 currInp = document.querySelector('#currentprice');
+weeklycheck = document.querySelector('#isweekly');
+weeklycheck.addEventListener('change', toggleWeekly );
 imgInp.addEventListener('change', function(e) {readURL(e.currentTarget); });
 qtyInp.addEventListener('keyup', updateTotals );
 qtyInp.addEventListener('change', updateTotals );
@@ -83,7 +85,7 @@ posInp.addEventListener('change', function(e) { document.querySelector('#positio
 stkeInp.addEventListener('keyup', function(e) { document.querySelector('#strike #number').innerHTML = numberWithCommas(e.currentTarget.value); saveChanges() });
 dteInp.addEventListener('change', function(e) { let b = e.currentTarget.value.split(/\D/), thedate = new Date(b[0], --b[1], b[2]), formatdate = thedate.toString("dd MMM yy"); document.querySelector('#date').innerHTML = formatdate;
 let diff = Math.round((thedate-new Date())/(1000*60*60*24));
-if(diff <= 5) {
+if(diff <= 3) {
     document.querySelector('#clock').classList.add('weekly');
 }else{
     document.querySelector('#clock').classList.remove('weekly');
@@ -118,6 +120,15 @@ dteInp.value = nextFriday.getFullYear().toString() + '-' + (nextFriday.getMonth(
     dteInp.dispatchEvent(evt);
     optInp.dispatchEvent(evt);
 
+
+function toggleWeekly(e) {
+  let weekly = document.querySelector('#weekly');
+  if(weeklycheck.checked) {
+    weekly.style.display = "inline-block";
+  }else{
+    weekly.style.display = "none";
+  }
+}
 
 function updateTotals(e) {
 
