@@ -152,7 +152,7 @@ if(Number(currInp.value) > Number(iniInp.value)) {
 profitLoss.innerHTML =  '+' + formatMoney( ((currInp.value - iniInp.value) * 100) * qtyInp.value ).replace('$','');
 profitLossPercent.innerHTML = ' +' + numberWithCommas(((currInp.value-iniInp.value)/iniInp.value * 100).toFixed(2));
 daysProfitLoss.innerHTML = '+' + formatMoney(Number(profitLoss.innerHTML.replace(/[^0-9.-]+/g,"")) - (qtyInp.value * 0.169).toFixed(2)).replace('$','');
-daysprofitLossPercent.innerHTML =  numberWithCommas((Number(profitLossPercent.innerHTML.replace(/[^0-9.-]+/g,"")) - (Number(profitLoss.innerHTML.replace(/[^0-9.-]+/g,"")) - Number(daysProfitLoss.innerHTML.replace(/[^0-9.-]+/g,""))).toFixed(2)).toFixed(2));
+daysprofitLossPercent.innerHTML =  '+' + numberWithCommas((Number(profitLossPercent.innerHTML.replace(/[^0-9.-]+/g,"")) - (Number(profitLoss.innerHTML.replace(/[^0-9.-]+/g,"")) - Number(daysProfitLoss.innerHTML.replace(/[^0-9.-]+/g,""))).toFixed(2)).toFixed(2));
 profitLossWrap.classList.remove('red');
 daysProfitLossWrap.classList.remove('red');
 }else{
